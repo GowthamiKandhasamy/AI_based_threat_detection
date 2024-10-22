@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL Injection Scanner</title>
+</head>
+<body>
+    <h1>SQL Injection Scanner</h1>
+    <form action="/scan" method="post">
+        <textarea name="query" rows="4" cols="50" placeholder="Enter your SQL query here..."></textarea><br>
+        <input type="submit" value="Scan">
+    </form>
+    
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+        <h3>Details:</h3>
+        <p>{{ details }}</p>
+        
+        {% if vulnerabilities %}
+            <h3>Detected Vulnerabilities:</h3>
+            <ul>
+                {% for vulnerability in vulnerabilities %}
+                    <li><strong>{{ vulnerability }}</strong></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        {% if suggestions %}
+            <h3>Suggestions for Fixing Vulnerabilities:</h3>
+            <ul>
+                {% for suggestion in suggestions %}
+                    <li><strong>{{ suggestion.suggestion }}</strong>
+                    <pre>{{ suggestion.example }}</pre></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
