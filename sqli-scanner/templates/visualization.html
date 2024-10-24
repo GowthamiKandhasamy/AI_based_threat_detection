@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Scan Visualization</title>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Vulnerability Scan Results</h1>
+
+        <h2>Scan Summary</h2>
+        <p>Total Queries: {{ vulnerabilities['Total Queries'] }}</p>
+        <p>Vulnerable Queries: {{ vulnerabilities['Vulnerable Queries'] }}</p>
+        <p>Safe Queries: {{ vulnerabilities['Safe Queries'] }}</p>
+
+        <h2>Detailed Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Query</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for query, result in vulnerabilities['Detailed'] %}
+                <tr>
+                    <td>{{ query }}</td>
+                    <td>{{ result }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Visualization</h2>
+        <img src="{{ url_for('serve_report', filename='visualization_' + filename + '.png') }}" alt="Scan Results Visualization">
+
+        <br>
+        <a href="{{ url_for('download_report', filename='report_' + filename + '.csv') }}">Download Report</a>
+        <br>
+        <a href="{{ url_for('index') }}">Back to Upload</a>
+    </div>
+</body>
+</html>

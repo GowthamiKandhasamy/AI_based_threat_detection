@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Injection Scan Report</h1>
+        <h2>Summary</h2>
+        <p>Total Queries: {{ vulnerabilities['Total Queries'] }}</p>
+        <p>Vulnerable Queries: {{ vulnerabilities['Vulnerable Queries'] }}</p>
+        <p>Safe Queries: {{ vulnerabilities['Safe Queries'] }}</p>
+        
+        <h2>Detailed Findings</h2>
+        <table>
+            <tr>
+                <th>Query</th>
+                <th>Result</th>
+            </tr>
+            {% for query, result in vulnerabilities['Detailed'] %}
+            <tr>
+                <td>{{ query }}</td>
+                <td>{{ result }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Visualization</h2>
+        <img src="{{ url_for('static', filename='reports/visualization_' + filename + '.png') }}" alt="Scan Results">
+
+        <h2>Download Report</h2>
+        <a href="{{ url_for('download_report', filename='report_' + filename + '.csv') }}">Download CSV Report</a>
+    </div>
+</body>
+</html>
