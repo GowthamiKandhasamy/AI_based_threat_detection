@@ -19,3 +19,7 @@ Enable CORS immediately after initializing your flask app with "CORS(app)" or "C
 Better create two directories: BAC and SQli and place the files in them. Make sure that you've changed the path in my files
 Place the integration files (dashboard.html and main_dashboard.py) alongside the directories you created. That's the easier way to work with Flask API
 The "View system log" button does nothing as of now. If you have a better idea on what to do with it or any replacement you could think of, do it. Otherwise, just remove it
+
+Sqli folders:
+Files are uploaded in sqli-scanner.
+Create two folders models and reports in your system for the trained models and reports to be saved in.
